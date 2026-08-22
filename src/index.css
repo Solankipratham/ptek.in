@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Inter var";
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+    font-named-instance: "Regular";
+    src: url(https://www.Ptek.com/wp-content/uploads/fonts/Inter.woff2) format("woff2 supports variations"), url(https://www.Ptek.com/wp-content/uploads/fonts/Inter.woff2) format("woff2-variations")
+}
+
+@font-face {
+    font-family: "Inter var";
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: italic;
+    font-named-instance: "Italic";
+    src: url(https://www.Ptek.com/wp-content/uploads/fonts/Inter-italic.woff2) format("woff2 supports variations"), url(https://www.Ptek.com/wp-content/uploads/fonts/Inter-italic.woff2) format("woff2-variations")
+}
+
+:root {
+    --primaryColor: #0079ff;
+    --skyblueColor: #E6F2FF;
+    --titleSecondary: #135293;
+    --H1: clamp(36px, calc(58 / var(--viewDesktop) * 100vw), 58px);
+    --H2: clamp(30px, calc(40 / var(--viewDesktop) * 100vw), 40px);
+    --H3: clamp(26px, calc(28/ var(--viewDesktop) * 100vw), 28px);
+    --H4: clamp(20px, calc(24 / var(--viewDesktop) * 100vw), 24px);
+    --H5: clamp(18px, calc(24/ var(--viewDesktop) * 100vw), 22px);
+    --viewDesktop: 1632
+}
+
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+button.iubenda-tp-btn.iubenda-cs-preferences-link {
+    display: none
+}
+
+img {
+    width: auto;
+    height: auto
+}
+
+html,
+body {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    overflow-x: hidden;
+}
+
+body {
+    -webkit-overflow-scrolling: touch
+}
+
+#tabs-vr-scroll::-webkit-scrollbar {
+    display: none
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-family: "Inter var", "Inter", sans-serif !important
+}
+
+body h1,
+body h2,
+body h3 {
+    margin-bottom: 16px
+}
+
+section {
+    margin: 160px auto;
+}
+
+#mockups-scroll-anim {
+    -webkit-animation: slide-up 80s linear infinite;
+    animation: slide-up 80s linear infinite;
+    background-position-y: center;
+    background-repeat: repeat-y;
+    background-size: 100%
+}
+
+.carousel-project-item:hover .view-project-overlay {
+    opacity: 1
+}
+
+@-webkit-keyframes slide-up {
+    from {
+        background-position-y: 0%
+    }
+
+    to {
+        background-position-y: 100%
+    }
+}
+
+@keyframes slide-up {
+    from {
+        background-position-y: 0%
+    }
+
+    to {
+        background-position-y: 100%
+    }
+}
+
+.clip-footer {
+    clip-path: polygon(0 0, 100% 6vw, 100% 100%, 0% 100%);
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: float 6s ease-in-out 1s infinite;
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
+}
+@keyframes partner-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-partner-scroll {
+  animation: partner-scroll 40s linear infinite;
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes float-delay {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+.animate-float-delay { animation: float-delay 8s ease-in-out infinite 1s; }

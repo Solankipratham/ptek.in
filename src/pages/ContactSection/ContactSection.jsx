@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { Check } from "lucide-react"; // Optional: install with `npm install lucide-react`
+import SEO from '../../components/SEO';
+import { BreadcrumbSchema } from '../../components/SchemaMarkup';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const ContactSection = () => {
   const [submitted, setSubmitted] = useState(false);
+
+  const breadcrumbItems = [
+    { name: 'Home', url: '/' },
+    { name: 'Contact' },
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,6 +37,16 @@ const ContactSection = () => {
 
   return (
     <section className="w-full py-16 px-6 md:px-12">
+      <SEO
+        title="Contact Ptek - Start Your Software Development Project"
+        description="Get in touch with Ptek to discuss your custom software, mobile app, AI, or digital transformation project. Let us help you build something exceptional."
+        url="/contactsection"
+        keywords="contact Ptek, software development inquiry, project consultation, tech partner"
+      />
+      <BreadcrumbSchema items={breadcrumbItems} />
+      <div className="max-w-7xl mx-auto">
+        <Breadcrumbs items={breadcrumbItems} />
+      </div>
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* Left Form Side */}
         <div>

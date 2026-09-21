@@ -3,6 +3,9 @@ import { FaArrowRight } from "react-icons/fa";
 import LeftImage from "/Award-Wall-LD-1.png"; // Replace with actual image
 import RightImage from "/aboutus-award01-min.png"; // Replace with actual image
 import AcademyImage from "/all-services-rectruiment-and-academy-min.jpg"; // Replace with your actual image path
+import SEO from '../../components/SEO';
+import { BreadcrumbSchema } from '../../components/SchemaMarkup';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 
 const partners = ["Samsung", "FWD", "Capgemini", "IBM"];
@@ -62,9 +65,25 @@ const teamImages = [
   ];
 
 const About = () => {
+  const breadcrumbItems = [
+    { name: 'Home', url: '/' },
+    { name: 'About Us' },
+  ];
+
   return (
-    <div className="px-6 py-16 md:px-20 bg-white text-black">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
+    <div className="bg-white text-black">
+      <SEO
+        title="About Ptek - International Software Development Company"
+        description="Learn about Ptek, an international, award-winning software development company founded by Michele Criminisi. Partners with Samsung, Capgemini, IBM. 20+ awards from Clutch and more."
+        url="/about-us"
+        keywords="about Ptek, software development company, Ptek SRL, Michele Criminisi, award-winning development"
+      />
+      <BreadcrumbSchema items={breadcrumbItems} />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <Breadcrumbs items={breadcrumbItems} />
+      </div>
+      <div className="px-6 py-16 md:px-20">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
         <div>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
             Our partners have often <br /> tried other teams, failed, <br /> then found success with us.
@@ -289,7 +308,7 @@ const About = () => {
       </div>
     </section>
     </div>
-   
+    </div>
     </div>
   );
 };

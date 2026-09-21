@@ -152,6 +152,12 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", controlNavbar);
   }, [lastScrollY]);
 
+  const mainLinks = [
+    { label: "Portfolio", link: "/portfolio" },
+    { label: "Case Studies", link: "/case-studies" },
+    { label: "Blog", link: "/blog" },
+  ];
+
   const mobileMenus = [
     { label: "Services", items: serviceItems },
     { label: "About", items: aboutItems },
@@ -189,6 +195,15 @@ const Navbar = () => {
 
             <DropdownMenu label="Industry" items={industryItems} />
             <DropdownMenu label="Solutions" items={solutionItems} />
+            <Link to="/portfolio" className="text-gray-700 hover:text-blue-600 font-medium text-base transition duration-200">
+              Portfolio
+            </Link>
+            <Link to="/case-studies" className="text-gray-700 hover:text-blue-600 font-medium text-base transition duration-200">
+              Case Studies
+            </Link>
+            <Link to="/blog" className="text-gray-700 hover:text-blue-600 font-medium text-base transition duration-200">
+              Blog
+            </Link>
 
             <select className="bg-white border border-gray-300 text-gray-700 rounded-md px-2 py-1 text-sm">
               <option value="en">EN</option>
@@ -219,6 +234,16 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-white px-4 pb-4 pt-2 space-y-2 max-h-[85vh] overflow-y-auto">
+          {mainLinks.map((item, i) => (
+            <Link
+              key={`main-${i}`}
+              to={item.link}
+              className="block text-gray-700 font-semibold text-left py-2 hover:text-blue-600"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
           {mobileMenus.map((menu, i) => (
             <div key={i}>
               <button

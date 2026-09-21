@@ -10,8 +10,8 @@ const Layout = () => {
       <Navbar />
 
       {/* Main content area */}
-      <main className="flex-grow w-full px-4 sm:px-6 lg:px-8 py-4 bg-white">
-        <div className="max-w-7xl mx-auto w-full">
+      <main className="flex-grow w-full bg-white">
+        <div className="w-full">
           <Outlet />
         </div>
       </main>

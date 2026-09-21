@@ -86,6 +86,13 @@ import Nft from './pages/Services/Nft';
 import Development from './pages/Services/Development';
 import ContactSection from './pages/ContactSection/ContactSection';
 
+// New pages
+import BlogListing from './pages/Blog/BlogListing';
+import BlogArticle from './pages/Blog/BlogArticle';
+import CaseStudiesListing from './pages/CaseStudies/CaseStudiesListing';
+import CaseStudyDetail from './pages/CaseStudies/CaseStudyDetail';
+import Portfolio from './pages/Portfolio/Portfolio';
+
 
 
 const AppRoutes = () => {
@@ -188,6 +195,13 @@ const AppRoutes = () => {
           <Route path="/nft" element={<Nft/>} />
           <Route path="/appdevelopment" element={<Development/>} />
           <Route path="/contactsection" element={<ContactSection/>} />
+
+          {/* New Routes */}
+          <Route path="/blog" element={<BlogListing />} />
+          <Route path="/blog/:slug" element={<BlogArticle />} />
+          <Route path="/case-studies" element={<CaseStudiesListing />} />
+          <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
+          <Route path="/portfolio" element={<Portfolio />} />
 
         
 

@@ -108,7 +108,15 @@ const Navbar = () => {
   const lastScrollY = useRef(0);
   const triggerRefs = useRef({});
   const panelRefs = useRef({});
+  const closeTimerRef = useRef(null);
   const location = useLocation();
+
+  const clearCloseTimer = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  };
 
   const positionPanel = (key) => {
     const trigger = triggerRefs.current[key];
@@ -131,12 +139,38 @@ const Navbar = () => {
   };
 
   const openDropdown = (key) => {
+    clearCloseTimer();
     positionPanel(key);
     setOpenDesktopDropdown(key);
   };
 
+  const scheduleClose = (key) => {
+    clearCloseTimer();
+    closeTimerRef.current = setTimeout(() => {
+      closeTimerRef.current = null;
+      setOpenDesktopDropdown((prev) => (prev === key ? null : prev));
+    }, 120);
+  };
+
+  useEffect(() => {
+    return () => clearCloseTimer();
+  }, []);
+
+  useEffect(() => {
+    const onPointerDown = (e) => {
+      const target = e.target;
+      if (target instanceof Node && !target.closest("[data-dropdown-root]")) {
+        clearCloseTimer();
+        setOpenDesktopDropdown(null);
+      }
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => document.removeEventListener("pointerdown", onPointerDown);
+  }, []);
+
   useEffect(() => {
     setMobileMenuOpen(false);
+    clearCloseTimer();
     setOpenDesktopDropdown(null);
     setOpenMobileDropdown(null);
   }, [location.pathname]);
@@ -168,6 +202,7 @@ const Navbar = () => {
   useEffect(() => {
     const onKeyDown = (e) => {
       if (e.key === "Escape") {
+        clearCloseTimer();
         setOpenDesktopDropdown(null);
         setMobileMenuOpen(false);
         setOpenMobileDropdown(null);
@@ -207,12 +242,7 @@ const Navbar = () => {
 
   const handleDropdownBlur = (e, key) => {
     if (!e.currentTarget.contains(e.relatedTarget)) {
-      setOpenDesktopDropdown((prev) => (prev === key ? null : prev));
-    }
-  };
-
-  const handleDropdownMouseLeave = (e, key) => {
-    if (!e.currentTarget.contains(document.activeElement)) {
+      clearCloseTimer();
       setOpenDesktopDropdown((prev) => (prev === key ? null : prev));
     }
   };
@@ -246,9 +276,10 @@ const Navbar = () => {
               item.type === "dropdown" ? (
                 <div
                   key={item.key}
+                  data-dropdown-root=""
                   className="relative flex items-stretch"
                   onMouseEnter={() => openDropdown(item.key)}
-                  onMouseLeave={(e) => handleDropdownMouseLeave(e, item.key)}
+                  onMouseLeave={() => scheduleClose(item.key)}
                   onFocus={() => openDropdown(item.key)}
                   onBlur={(e) => handleDropdownBlur(e, item.key)}
                 >
@@ -259,11 +290,14 @@ const Navbar = () => {
                     }}
                     aria-expanded={openDesktopDropdown === item.key}
                     aria-haspopup="true"
-                    onClick={() =>
-                      setOpenDesktopDropdown((prev) =>
-                        prev === item.key ? null : item.key
-                      )
-                    }
+                    onClick={() => {
+                      if (openDesktopDropdown === item.key) {
+                        clearCloseTimer();
+                        setOpenDesktopDropdown(null);
+                      } else {
+                        openDropdown(item.key);
+                      }
+                    }}
                     className={`flex items-center gap-1 px-2.5 py-2 my-auto rounded-lg text-[13px] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
                       openDesktopDropdown === item.key || isDropdownActive(item.items)
                         ? "text-blue-600 bg-blue-50"
@@ -288,14 +322,14 @@ const Navbar = () => {
                         ? { left: `${panelLeft[item.key]}px` }
                         : undefined
                     }
-                    className={`absolute left-0 top-full mt-2 w-[600px] max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-2xl border border-gray-100 z-[100] overflow-hidden transition-all duration-200 ${
+                    className={`absolute left-0 top-full mt-2 w-[650px] max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-2xl border border-gray-100 z-[100] overflow-hidden transition-all duration-150 ${
                       openDesktopDropdown === item.key
                         ? "opacity-100 visible translate-y-0"
                         : "opacity-0 invisible translate-y-2 pointer-events-none"
                     }`}
                   >
                     <div className="max-h-[70vh] overflow-y-auto overscroll-contain dropdown-scroll p-3">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1">
+                      <div className="grid grid-cols-3 gap-1">
                         {item.items.map((sub) => (
                           <Link
                             key={sub.link}

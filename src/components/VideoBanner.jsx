@@ -35,7 +35,7 @@ const VideoBanner = () => {
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-slate-900 pt-16 lg:pt-18">
+    <section className="relative w-full overflow-hidden bg-slate-900">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(37,99,235,0.18)_0%,_transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(99,102,241,0.12)_0%,_transparent_60%)]" />
 

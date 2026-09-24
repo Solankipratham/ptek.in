@@ -82,6 +82,7 @@ import EmbeddedSoftware from './pages/solution/EmbeddedSoftware';
 import ERP from './pages/solution/ERP';
 import FacilitiesManagement from './pages/solution/FacilitiesManagement';
 import ScrollToTop from './components/ScrollToTop';
+import NotFound from './pages/NotFound';
 import Nft from './pages/Services/Nft';
 import Development from './pages/Services/Development';
 import ContactSection from './pages/ContactSection/ContactSection';
@@ -202,6 +203,8 @@ const AppRoutes = () => {
           <Route path="/case-studies" element={<CaseStudiesListing />} />
           <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
           <Route path="/portfolio" element={<Portfolio />} />
+
+          <Route path="*" element={<NotFound />} />
 
         
 

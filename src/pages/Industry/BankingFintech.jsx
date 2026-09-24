@@ -64,7 +64,7 @@ const BankingFintech = () => {
     <div className="font-sans bg-white">
       {/* Hero Section */}
       <div
-        className="relative  w-full min-h-screen flex items-center pt-16 pb-32"
+        className="relative  w-full min-h-screen flex items-center pb-32"
         style={{
           background: "",
         }}
